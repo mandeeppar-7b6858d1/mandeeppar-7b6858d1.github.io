@@ -1,0 +1,1636 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>51免费版视频 - 聚合工具与内容导航</title>
+  <meta name="description" content="51免费版视频是视频聚合与筛选工具导航，提供免费视频分类、热播条目、使用体验与FAQ。适合想快速查找免费视频资源、比较工具差异的用户。">
+  <meta name="keywords" content="免费视频聚合,视频分类导航,热播条目,工具对比,免费观看">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1e3a'/%3E%3Cpath d='M26 20l20 12-20 12V20z' fill='%23ffb74d'/%3E%3Ccircle cx='18' cy='32' r='6' fill='%234dd0e1'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --surface: #ffffff;
+      --ink: #14171f;
+      --ink-secondary: #3e4352;
+      --muted: #6b7280;
+      --line: #e4e7ee;
+      --line-strong: #cdd2dd;
+      --brand: #1a1e3a;
+      --brand-light: #2d3358;
+      --accent: #ff8a3c;
+      --accent-soft: #fff1e6;
+      --accent-ink: #b44d0e;
+      --cyan: #2a8f9e;
+      --cyan-soft: #e3f5f7;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 6px 18px rgba(20,23,31,.06);
+      --shadow-sticky: 0 2px 12px rgba(20,23,31,.08);
+      --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+      --sticky-height: 108px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-height); }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.3; }
+    h2 { font-size: 1.5rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.1rem; }
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* sticky wrapper */
+    .sticky-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      box-shadow: var(--shadow-sticky);
+    }
+    /* announcement */
+    .announcement {
+      background: var(--brand);
+      color: #fff;
+      font-size: .875rem;
+      padding: 8px 0;
+    }
+    .announcement .container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .announcement-badge {
+      background: var(--accent);
+      color: var(--brand);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: .75rem;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    .announcement-text { opacity: .92; }
+    /* header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand svg { display: block; }
+    .brand-text {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--brand);
+    }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .main-nav a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      padding: 6px 12px;
+      border-radius: 100px;
+      transition: background .15s, color .15s;
+    }
+    .main-nav a:hover, .main-nav a:focus-visible {
+      background: var(--bg);
+      color: var(--brand);
+      outline: none;
+    }
+    .quick-entry {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 4px 4px 4px 14px;
+      gap: 4px;
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-size: .85rem;
+      padding: 4px 0;
+      width: 150px;
+      outline: none;
+      color: var(--ink);
+    }
+    .search-box input::placeholder { color: var(--muted); }
+    .search-box button {
+      background: var(--brand);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      transition: background .15s;
+    }
+    .search-box button:hover { background: var(--brand-light); }
+    /* hero */
+    .hero {
+      background: linear-gradient(135deg, #1a1e3a 0%, #2a2f52 60%, #353b66 100%);
+      color: #fff;
+      padding: 48px 0 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,138,60,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: 30%;
+      bottom: -120px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(77,208,225,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .hero-content .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.8);
+      max-width: 540px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--brand);
+      font-weight: 700;
+      padding: 10px 26px;
+      border-radius: 100px;
+      font-size: .95rem;
+      transition: transform .15s, box-shadow .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,138,60,.35); }
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 26px;
+      border-radius: 100px;
+      font-size: .95rem;
+      transition: background .15s, border-color .15s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.6); }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-visual svg { width: 100%; max-width: 380px; height: auto; }
+    /* main layout */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr 260px;
+      gap: 28px;
+      padding: 32px 0 56px;
+      align-items: start;
+    }
+    /* left channel index */
+    .channel-index {
+      position: sticky;
+      top: calc(var(--sticky-height) + 16px);
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 18px 0;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .channel-index h3 {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      padding: 0 18px 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 6px;
+    }
+    .channel-index ul li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      transition: background .12s, color .12s;
+      border-left: 3px solid transparent;
+    }
+    .channel-index ul li a:hover, .channel-index ul li a:focus-visible {
+      background: var(--bg);
+      color: var(--brand);
+      border-left-color: var(--accent);
+      outline: none;
+    }
+    .channel-index ul li a .ch-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--cyan-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      flex-shrink: 0;
+    }
+    /* main content */
+    .main-content { min-width: 0; }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .section-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--brand);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-header h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 4px;
+    }
+    .section-header .more-link {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color .15s;
+    }
+    .section-header .more-link:hover { color: var(--accent-ink); }
+    /* overview text */
+    .overview-text {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 24px 28px;
+      font-size: .95rem;
+      color: var(--ink-secondary);
+      line-height: 1.8;
+      box-shadow: var(--shadow-sm);
+    }
+    .overview-text p + p { margin-top: 12px; }
+    /* featured cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .featured-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform .15s, box-shadow .15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .featured-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .featured-card .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--bg);
+    }
+    .featured-card .card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 6px;
+    }
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: .7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: var(--cyan-soft);
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+    .tag-accent {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+    }
+    .card-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+    .card-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      gap: 12px;
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 4px;
+      border-top: 1px dashed var(--line);
+      padding-top: 8px;
+    }
+    .card-meta span { display: flex; align-items: center; gap: 3px; }
+    /* update list */
+    .update-list {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .update-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--line);
+      transition: background .12s;
+    }
+    .update-item:last-child { border-bottom: none; }
+    .update-item:hover { background: var(--bg); }
+    .update-time {
+      font-size: .75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 64px;
+      padding-top: 2px;
+    }
+    .update-body { flex: 1; min-width: 0; }
+    .update-body strong {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .update-body p {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    /* category grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+    .category-btn {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 16px 12px;
+      text-align: center;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      transition: border-color .15s, background .15s, color .15s;
+      box-shadow: var(--shadow-sm);
+    }
+    .category-btn:hover, .category-btn:focus-visible {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      outline: none;
+    }
+    .category-btn .cat-icon {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+    /* deep analysis */
+    .deep-analysis {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .deep-analysis h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 24px 0 10px;
+    }
+    .deep-analysis h3:first-of-type { margin-top: 0; }
+    .deep-analysis p {
+      font-size: .93rem;
+      color: var(--ink-secondary);
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .deep-analysis ul {
+      padding-left: 20px;
+      margin: 8px 0 14px;
+      list-style: disc;
+    }
+    .deep-analysis ul li {
+      font-size: .9rem;
+      color: var(--ink-secondary);
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+    /* guide steps */
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .step-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .step-card h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .step-card p {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    /* faq */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    details {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    details summary {
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--ink);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .12s;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--muted);
+      transition: transform .2s;
+    }
+    details[open] summary::after { content: '−'; }
+    details summary:hover { background: var(--bg); }
+    details .faq-answer {
+      padding: 0 20px 16px;
+      font-size: .88rem;
+      color: var(--ink-secondary);
+      line-height: 1.75;
+    }
+    /* user comments */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .comment-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .comment-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .comment-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--brand-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .comment-nick {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .comment-text {
+      font-size: .83rem;
+      color: var(--ink-secondary);
+      line-height: 1.65;
+    }
+    .comment-text em {
+      font-style: normal;
+      color: var(--accent-ink);
+      font-weight: 600;
+    }
+    /* news */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .news-item {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .15s;
+    }
+    .news-item:hover { border-color: var(--line-strong); }
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .news-date {
+      font-size: .75rem;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .news-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .news-summary {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    /* related tags */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag-cloud a {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      transition: border-color .15s, background .15s, color .15s;
+    }
+    .tag-cloud a:hover, .tag-cloud a:focus-visible {
+      border-color: var(--cyan);
+      background: var(--cyan-soft);
+      color: var(--cyan);
+      outline: none;
+    }
+    /* ranking */
+    .ranking-list {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--line);
+      transition: background .12s;
+    }
+    .rank-item:last-child { border-bottom: none; }
+    .rank-item:hover { background: var(--bg); }
+    .rank-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .rank-num.top {
+      background: var(--accent);
+      color: var(--brand);
+    }
+    .rank-info { flex: 1; min-width: 0; }
+    .rank-info strong {
+      font-size: .88rem;
+      font-weight: 600;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rank-info span {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+    .rank-score {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--accent-ink);
+      flex-shrink: 0;
+    }
+    /* right sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: sticky;
+      top: calc(var(--sticky-height) + 16px);
+    }
+    .side-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .side-card h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hot-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      font-size: .85rem;
+      border-bottom: 1px dashed var(--line);
+    }
+    .hot-list li:last-child { border-bottom: none; }
+    .hot-list .hot-index {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--muted);
+      width: 18px;
+      flex-shrink: 0;
+    }
+    .hot-list .hot-index.hot { color: var(--accent-ink); }
+    .hot-list .hot-name {
+      flex: 1;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hot-list .hot-badge {
+      font-size: .65rem;
+      font-weight: 600;
+      color: var(--cyan);
+      background: var(--cyan-soft);
+      padding: 1px 6px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .sidebar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .sidebar-tags a {
+      font-size: .78rem;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--bg);
+      color: var(--ink-secondary);
+      transition: background .12s, color .12s;
+    }
+    .sidebar-tags a:hover { background: var(--accent-soft); color: var(--accent-ink); }
+    /* footer */
+    .site-footer {
+      background: var(--brand);
+      color: rgba(255,255,255,.7);
+      padding: 40px 0 24px;
+      font-size: .85rem;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+    .footer-brand .brand-text {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .footer-brand p {
+      font-size: .82rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.55);
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: .85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .footer-col ul li {
+      margin-bottom: 6px;
+    }
+    .footer-col ul li a {
+      color: rgba(255,255,255,.55);
+      font-size: .82rem;
+      transition: color .12s;
+    }
+    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .75rem;
+      color: rgba(255,255,255,.4);
+    }
+    .footer-bottom .disclaimer {
+      color: rgba(255,255,255,.35);
+    }
+    /* search feedback */
+    .search-feedback {
+      display: none;
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      font-size: .85rem;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      border: 1px solid #ffd6b8;
+    }
+    .search-feedback.visible { display: block; }
+    .no-results {
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    /* responsive */
+    @media (max-width: 1024px) {
+      .main-layout {
+        grid-template-columns: 1fr 280px;
+      }
+      .channel-index {
+        display: none;
+      }
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .hero-visual { justify-content: flex-start; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 740px) {
+      :root { --sticky-height: 100px; }
+      .main-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .hero-content h1 { font-size: 1.8rem; }
+      .hero { padding: 32px 0 36px; }
+      .hero-desc { font-size: .95rem; }
+      .hero-visual { display: none; }
+      .container { padding: 0 16px; }
+      .site-header .container { gap: 12px; }
+      .main-nav { display: none; }
+      .search-box input { width: 110px; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+      .comment-grid { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .sidebar { grid-template-columns: 1fr; }
+      .deep-analysis { padding: 20px; }
+      .overview-text { padding: 18px 20px; }
+      .update-item { flex-wrap: wrap; gap: 4px; }
+      .update-time { min-width: auto; width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-content h1 { font-size: 1.6rem; }
+    }
+    /* focus styles */
+    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- Sticky announcement + header -->
+<div class="sticky-wrap">
+  <div class="announcement" role="region" aria-label="更新公告">
+    <div class="container">
+      <span class="announcement-badge">今日更新</span>
+      <span class="announcement-text">2026-11-08 新增 9 条免费视频分类索引，热门榜单已刷新</span>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="51免费版视频 首页">
+        <svg width="36" height="36" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#1a1e3a"/>
+          <path d="M26 20l20 12-20 12V20z" fill="#ffb74d"/>
+          <circle cx="18" cy="32" r="6" fill="#4dd0e1"/>
+        </svg>
+        <span class="brand-text">51免费版视频</span>
+      </a>
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#overview">领域概览</a>
+        <a href="/#featured">精选条目</a>
+        <a href="/#updates">最新更新</a>
+        <a href="/#categories">分类筛选</a>
+        <a href="/#deep-dive">深度解析</a>
+        <a href="/#faq">常见问题</a>
+      </nav>
+      <div class="quick-entry">
+        <div class="search-box">
+          <input type="search" id="searchInput" placeholder="搜索条目或类型" aria-label="搜索条目或类型">
+          <button id="searchBtn" type="button" aria-label="搜索">搜索</button>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- Hero -->
+<section class="hero" aria-label="主题首屏">
+  <div class="container">
+    <div class="hero-content">
+      <h1>51免费版视频</h1>
+      <p class="hero-desc">汇集免费视频工具导航、分类索引与热播条目，覆盖影视速览、纪录片、知识科普、短视频创作等方向，方便按类型筛选与比较使用体验。</p>
+      <div class="hero-actions">
+        <a href="/#featured" class="btn-primary">浏览精选条目</a>
+        <a href="/#categories" class="btn-ghost">按分类筛选</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="30" width="340" height="210" rx="18" fill="#2a2f52" stroke="#4a5080" stroke-width="1.5"/>
+        <rect x="40" y="50" width="300" height="140" rx="10" fill="#1a1e3a"/>
+        <path d="M155 100l50 30-50 30V100z" fill="#ffb74d" opacity="0.9"/>
+        <circle cx="90" cy="200" r="10" fill="#4dd0e1" opacity="0.7"/>
+        <rect x="120" y="195" width="60" height="8" rx="4" fill="#4dd0e1" opacity="0.4"/>
+        <rect x="120" y="210" width="100" height="6" rx="3" fill="#4dd0e1" opacity="0.25"/>
+        <rect x="260" y="195" width="40" height="8" rx="4" fill="#ffb74d" opacity="0.5"/>
+        <rect x="260" y="210" width="70" height="6" rx="3" fill="#ffb74d" opacity="0.25"/>
+        <rect x="20" y="250" width="340" height="30" rx="8" fill="#2a2f52" opacity="0.6"/>
+        <circle cx="45" cy="265" r="6" fill="#ff8a3c" opacity="0.7"/>
+        <rect x="60" y="261" width="50" height="7" rx="3.5" fill="#4dd0e1" opacity="0.3"/>
+        <rect x="120" y="261" width="80" height="7" rx="3.5" fill="#4dd0e1" opacity="0.2"/>
+        <rect x="210" y="261" width="40" height="7" rx="3.5" fill="#4dd0e1" opacity="0.2"/>
+        <rect x="270" y="261" width="70" height="7" rx="3.5" fill="#ffb74d" opacity="0.2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Main layout -->
+<div class="container">
+  <div class="main-layout">
+
+    <!-- Left channel index -->
+    <aside class="channel-index" aria-label="频道索引">
+      <h3>频道索引</h3>
+      <ul>
+        <li><a href="/#featured"><span class="ch-icon">🎬</span>影视速览</a></li>
+        <li><a href="/#featured"><span class="ch-icon">📚</span>知识科普</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🎞️</span>纪录片</a></li>
+        <li><a href="/#featured"><span class="ch-icon">📱</span>短视频创作</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🎤</span>访谈演讲</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🎮</span>游戏实录</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🎵</span>音乐现场</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🛠️</span>工具评测</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🌍</span>旅行纪实</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🧪</span>实验短片</a></li>
+        <li><a href="/#featured"><span class="ch-icon">🏆</span>赛事集锦</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+      <!-- search feedback -->
+      <div id="searchFeedback" class="search-feedback" role="status"></div>
+
+      <!-- 1. Overview -->
+      <section class="section" id="overview">
+        <div class="section-header">
+          <h2>免费视频工具领域概览</h2>
+        </div>
+        <div class="overview-text">
+          <p>免费视频工具与聚合导航覆盖的方向相当宽泛：从影视片段速览、纪录片专题、知识科普短片，到短视频素材、游戏实录、音乐现场与工具评测，每个方向对应不同的使用场景和内容密度。用户搜索这类工具时，通常想快速了解有哪些可用的免费分类、哪些条目近期更新活跃、以及不同工具之间的筛选逻辑差异。</p>
+          <p>当前值得关注的具体方向包括：短剧速览类条目更新频率高，适合碎片时间；知识科普类条目单集时长多在 8—20 分钟，适合系统化浏览；纪录片专题通常按系列组织，适合周末集中观看；短视频创作素材类条目强调标签与分辨率筛选，适合有产出需求的用户。工具本身在分类粒度、筛选条件、条目排序方式上各有侧重，理解这些差异比单纯比较数量更有参考意义。</p>
+          <p>从消费策略上看，先确定自己要找的类型（影视、知识、创作素材或赛事），再比较工具在该类型下的条目覆盖和更新节奏，最后参考用户评论中提到的实际体验，是相对高效的判断路径。</p>
+        </div>
+      </section>
+
+      <!-- 2. Featured -->
+      <section class="section" id="featured">
+        <div class="section-header">
+          <h2>精选条目推荐</h2>
+          <a href="/#updates" class="more-link">查看更新 →</a>
+        </div>
+        <div class="card-grid" id="featuredGrid">
+          <article class="featured-card" data-title="短剧速览合集 第4季">
+            <img class="card-img" src="https://picsum.photos/seed/duanju-sulan04/400/300" width="400" height="300" loading="lazy" alt="短剧速览合集第4季封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">短剧速览</span><span class="tag tag-accent">更新至EP12</span></div>
+              <h3 class="card-title">短剧速览合集 第4季</h3>
+              <p class="card-desc">每集8分钟以内的竖屏短剧精编，按题材分单元，适合通勤碎片时间浏览。本周更新律政与悬疑两个单元。</p>
+              <div class="card-meta"><span>🔥 热度 9.2</span><span>⭐ 4.6</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="知识胶囊：五分钟经济学">
+            <img class="card-img" src="https://picsum.photos/seed/zhishi-jingjixue05/400/300" width="400" height="300" loading="lazy" alt="知识胶囊五分钟经济学封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">知识科普</span><span class="tag tag-accent">已完结</span></div>
+              <h3 class="card-title">知识胶囊：五分钟经济学</h3>
+              <p class="card-desc">每集用具体案例解释一个经济学概念，从价格歧视到边际成本，语速适中，适合入门建立框架。</p>
+              <div class="card-meta"><span>🔥 热度 8.7</span><span>⭐ 4.8</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="纪录片：城市夜行线">
+            <img class="card-img" src="https://picsum.photos/seed/chengshi-yexing12/400/300" width="400" height="300" loading="lazy" alt="纪录片城市夜行线封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">纪录片</span><span class="tag tag-accent">全6集</span></div>
+              <h3 class="card-title">纪录片：城市夜行线</h3>
+              <p class="card-desc">跟拍六座城市深夜工作者的日常，从物流分拣到急诊室，镜头克制，旁白信息密度高。</p>
+              <div class="card-meta"><span>🔥 热度 8.9</span><span>⭐ 4.7</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="短视频创作素材库 11月精选">
+            <img class="card-img" src="https://picsum.photos/seed/sucai-11yue08/400/300" width="400" height="300" loading="lazy" alt="短视频创作素材库11月精选封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">创作素材</span><span class="tag tag-accent">每周更新</span></div>
+              <h3 class="card-title">短视频创作素材库 11月精选</h3>
+              <p class="card-desc">按场景标签整理的空镜与转场素材，支持分辨率筛选，本周新增城市延时与自然光人像两组。</p>
+              <div class="card-meta"><span>🔥 热度 9.0</span><span>⭐ 4.5</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="游戏实录：开放世界速通合集">
+            <img class="card-img" src="https://picsum.photos/seed/youxi-sutong21/400/300" width="400" height="300" loading="lazy" alt="游戏实录开放世界速通合集封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">游戏实录</span><span class="tag tag-accent">更新至第9期</span></div>
+              <h3 class="card-title">游戏实录：开放世界速通合集</h3>
+              <p class="card-desc">收录多款开放世界游戏的高效路线实录，附带分段解说与关键节点标注，适合研究路线规划。</p>
+              <div class="card-meta"><span>🔥 热度 8.4</span><span>⭐ 4.4</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="音乐现场：不插电小剧场">
+            <img class="card-img" src="https://picsum.photos/seed/yinyue-buchadian33/400/300" width="400" height="300" loading="lazy" alt="音乐现场不插电小剧场封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">音乐现场</span><span class="tag tag-accent">更新至第5场</span></div>
+              <h3 class="card-title">音乐现场：不插电小剧场</h3>
+              <p class="card-desc">独立音乐人不插电现场实录，每场20—30分钟，保留环境音与互动片段，适合耳机收听。</p>
+              <div class="card-meta"><span>🔥 热度 8.6</span><span>⭐ 4.7</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="工具评测：免费视频聚合器横向对比">
+            <img class="card-img" src="https://picsum.photos/seed/gongju-pingce17/400/300" width="400" height="300" loading="lazy" alt="工具评测免费视频聚合器横向对比封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">工具评测</span><span class="tag tag-accent">11月6日发布</span></div>
+              <h3 class="card-title">工具评测：免费视频聚合器横向对比</h3>
+              <p class="card-desc">从分类粒度、筛选条件、条目排序三个维度比较五款常见聚合工具，附具体操作截图说明。</p>
+              <div class="card-meta"><span>🔥 热度 9.1</span><span>⭐ 4.5</span></div>
+            </div>
+          </article>
+          <article class="featured-card" data-title="旅行纪实：沿海公路28天">
+            <img class="card-img" src="https://picsum.photos/seed/lvxing-yanhai28/400/300" width="400" height="300" loading="lazy" alt="旅行纪实沿海公路28天封面">
+            <div class="card-body">
+              <div class="card-tags"><span class="tag">旅行纪实</span><span class="tag tag-accent">全12集</span></div>
+              <h3 class="card-title">旅行纪实：沿海公路28天</h3>
+              <p class="card-desc">沿东部海岸线自驾的系列记录，每集聚焦一个城镇的食物与街景，节奏舒缓，信息密度适中。</p>
+              <div class="card-meta"><span>🔥 热度 8.3</span><span>⭐ 4.6</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. Updates -->
+      <section class="section" id="updates">
+        <div class="section-header">
+          <h2>最新更新与热播动态</h2>
+        </div>
+        <div class="update-list">
+          <div class="update-item">
+            <span class="update-time">今天 09:30</span>
+            <div class="update-body">
+              <strong>短剧速览合集 第4季 EP12 上线</strong>
+              <p>律政单元完结篇，新增两个反转节点，单集时长 7 分 40 秒。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">今天 08:15</span>
+            <div class="update-body">
+              <strong>短视频创作素材库新增「城市延时」标签</strong>
+              <p>上架 14 条 4K 空镜素材，支持按分辨率与帧率筛选。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">昨天 21:10</span>
+            <div class="update-body">
+              <strong>纪录片：城市夜行线 第6集上线</strong>
+              <p>本集聚焦凌晨水产批发市场，旁白补充了供应链背景信息。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">昨天 18:40</span>
+            <div class="update-body">
+              <strong>工具评测：聚合器对比 发布补充篇</strong>
+              <p>新增「筛选条件响应速度」实测数据，覆盖三款工具。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11月7日 16:20</span>
+            <div class="update-body">
+              <strong>游戏实录：开放世界速通 第9期上线</strong>
+              <p>新增分段标记功能，可按章节跳转关键路线节点。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11月7日 11:05</span>
+            <div class="update-body">
+              <strong>音乐现场：不插电小剧场 第5场上线</strong>
+              <p>本期嘉宾为独立民谣组合，包含两首未发布新歌现场版。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11月6日 20:00</span>
+            <div class="update-body">
+              <strong>知识胶囊：五分钟经济学 全系列完结</strong>
+              <p>共 32 集，最后一集讨论外部性与公共品，附概念索引页。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11月5日 14:30</span>
+            <div class="update-body">
+              <strong>旅行纪实：沿海公路28天 第10集上线</strong>
+              <p>本集到达海岛段落，新增当地夜市小吃特写镜头。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11月3日 10:00</span>
+            <div class="update-body">
+              <strong>热门榜单 11 月首周刷新</strong>
+              <p>短剧速览合集升至榜首，工具评测进入前三。</p>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11月1日 09:00</span>
+            <div class="update-body">
+              <strong>分类索引新增「实验短片」频道</strong>
+              <p>收录 12 个独立创作团队的实验性短片，支持按时长筛选。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Categories -->
+      <section class="section" id="categories">
+        <div class="section-header">
+          <h2>分类入口</h2>
+        </div>
+        <div class="category-grid">
+          <button class="category-btn" data-category="短剧速览"><span class="cat-icon">🎬</span>短剧速览</button>
+          <button class="category-btn" data-category="知识科普"><span class="cat-icon">📚</span>知识科普</button>
+          <button class="category-btn" data-category="纪录片"><span class="cat-icon">🎞️</span>纪录片</button>
+          <button class="category-btn" data-category="短视频创作"><span class="cat-icon">📱</span>短视频创作</button>
+          <button class="category-btn" data-category="游戏实录"><span class="cat-icon">🎮</span>游戏实录</button>
+          <button class="category-btn" data-category="音乐现场"><span class="cat-icon">🎵</span>音乐现场</button>
+          <button class="category-btn" data-category="工具评测"><span class="cat-icon">🛠️</span>工具评测</button>
+          <button class="category-btn" data-category="旅行纪实"><span class="cat-icon">🌍</span>旅行纪实</button>
+        </div>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:10px;">点击分类按钮可筛选上方精选条目（再次点击取消筛选）</p>
+      </section>
+
+      <!-- 5. Deep analysis -->
+      <section class="section" id="deep-dive">
+        <div class="section-header">
+          <h2>深度解析：免费视频工具的类型差异与选择依据</h2>
+        </div>
+        <div class="deep-analysis">
+          <h3>聚合型工具与垂直型工具的区别</h3>
+          <p>免费视频工具大致分为两类：聚合型工具将多个来源的条目按统一格式索引，优势是覆盖面广、分类体系统一；垂直型工具只做单一类型（如短剧或纪录片），优势是该类型下的筛选条件更细、条目描述更完整。选择时先明确自己主要看哪一类内容——如果经常在影视、知识、创作素材之间切换，聚合型更省力；如果长期只看纪录片，垂直型的专题整理往往更深入。</p>
+          <h3>分类粒度对查找效率的影响</h3>
+          <p>分类粒度是指工具把内容切分到多细的层级。例如同样做「知识科普」，有的工具只分到「科学」「人文」两级，有的则细分到「物理」「经济」「心理」等三级标签。粒度太粗会导致热门条目淹没小众内容，粒度太细则可能让用户在选择标签时耗费过多时间。一个实用的判断方法是：看工具首页是否提供「全部标签」或「标签索引」入口，如果有，说明它支持从粗到细逐层缩小范围。</p>
+          <ul>
+            <li>粗粒度（6—10 个分类）：适合没有明确目标、想随便看看的用户。</li>
+            <li>中粒度（15—30 个标签）：适合有大致方向、需要快速排除无关内容的用户。</li>
+            <li>细粒度（50 个以上标签）：适合已经确定具体类型、需要精确筛选的用户。</li>
+          </ul>
+          <h3>更新节奏与条目时效性</h3>
+          <p>不同内容类型的更新节奏差异很大。短剧速览类通常按周更新，每集时长较短，适合追更；纪录片专题多为整季上线，适合集中观看；知识科普类有按周更新的系列，也有一次性完结的合集；创作素材类更新最频繁，往往每日或每周新增一批。比较工具时，可以观察其「最新更新」列表的时间戳密度——如果近三天内有大量条目更新，说明该工具的内容维护较活跃。</p>
+          <h3>条目排序方式的参考价值</h3>
+          <p>常见的排序方式包括按热度、按更新时间、按评分和按人工精选。热度排序适合快速了解当前流行什么，但容易形成头部效应；时间排序适合追更和发现新内容；评分排序需要足够多的评分样本才有参考意义；人工精选适合在类型不熟悉时作为起步参考。建议在使用时结合两种排序切换查看，避免只依赖单一维度。</p>
+          <h3>如何判断一个条目是否值得投入时间</h3>
+          <p>可以从三个具体信号入手：第一，看条目的简介是否具体到「讲了什么」而不是只有类型标签；第二，看更新记录是否连续，如果某个系列长期停更或跳更，消费体验会受影响；第三，看评论区是否有针对内容本身的讨论，而不是只有「好看」「不错」这类泛泛评价。这三个信号比单纯的评分数字更能反映实际可看性。</p>
+        </div>
+      </section>
+
+      <!-- 6. Experience guide -->
+      <section class="section" id="guide">
+        <div class="section-header">
+          <h2>体验指南：内容消费顺序与判断依据</h2>
+        </div>
+        <div class="guide-steps">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <h4>先确定内容类型</h4>
+            <p>从短剧速览、知识科普、纪录片、创作素材中选一个主要方向，避免一开始就跨类浏览导致注意力分散。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <h4>比较同类工具的分类粒度</h4>
+            <p>在确定的类型下，看不同工具提供的标签是否覆盖你关心的子方向，标签越具体越容易找到目标条目。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <h4>查看更新列表的时间密度</h4>
+            <p>观察近一周的更新条目数量，判断该工具在该类型下的维护频率，避免选择长期不更新的分类。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">4</span>
+            <h4>用评论区验证内容质量</h4>
+            <p>优先参考提到具体情节、知识点或操作体验的评论，忽略只有情绪表达的内容，形成自己的判断依据。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section" id="faq">
+        <div class="section-header">
+          <h2>常见问题</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>短剧速览类条目一般多久更新一次？</summary>
+            <div class="faq-answer">多数短剧速览系列按周更新，通常每周更新 1—2 集，单集时长在 5—10 分钟。也有部分系列采用一次性上线全集的方式。判断更新节奏可以看条目详情页的时间戳分布，如果近两周内有多次更新记录，说明该系列处于活跃更新状态。</div>
+          </details>
+          <details>
+            <summary>聚合型工具和垂直型工具在筛选时有什么具体区别？</summary>
+            <div class="faq-answer">聚合型工具的分类标签通常覆盖多个类型，筛选时先选大类再选子标签，层级较浅；垂直型工具只服务一个类型，子标签更细，可能直接提供「按场景」「按人物」「按时长」等组合筛选。如果目标明确且类型单一，垂直型工具的筛选路径更短；如果经常跨类型浏览，聚合型工具的统一入口更方便。</div>
+          </details>
+          <details>
+            <summary>第一次接触免费视频工具，从哪个类型开始看比较好？</summary>
+            <div class="faq-answer">建议从「知识科普」或「短剧速览」开始。知识科普类条目通常有明确的主题和较短的时长，容易在短时间内判断内容是否合口味；短剧速览类单集更短，适合测试工具的播放流畅度和分类逻辑。这两个类型都能帮助你在较低时间成本下熟悉工具的基本操作和内容组织方式。</div>
+          </details>
+          <details>
+            <summary>纪录片专题的评分标准通常看哪些维度？</summary>
+            <div class="faq-answer">常见的评价维度包括：信息密度（单位时长内提供的有效信息量）、镜头与叙事质量、选题独特性、以及是否提供背景补充。在工具导航中，可以优先查看条目简介是否提及具体拍摄对象和叙事角度，这比单纯看评分数字更能判断是否适合自己。</div>
+          </details>
+          <details>
+            <summary>创作素材类条目的筛选条件一般包括什么？</summary>
+            <div class="faq-answer">常见的筛选条件包括分辨率（1080p、4K）、时长、帧率、场景标签（城市、自然、室内）、色调风格和是否包含人物。部分工具还支持按「可商用」「需署名」等授权信息筛选。使用前先确定自己的输出需求，再对照筛选条件缩小范围，能明显减少浏览时间。</div>
+          </details>
+          <details>
+            <summary>工具评测类内容本身应该怎么参考？</summary>
+            <div class="faq-answer">看评测时重点参考它是否给出了具体的对比维度（如分类数量、筛选响应速度、条目描述完整度）和实测过程，而不是只看结论排名。如果评测中附带了操作截图或具体条目示例，参考价值更高。另外可以对照自己的主要使用场景，看评测中提到的优势是否正好对应你的需求。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. Comments -->
+      <section class="section" id="comments">
+        <div class="section-header">
+          <h2>用户评论</h2>
+        </div>
+        <div class="comment-grid">
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">林</span><span class="comment-nick">林间有风</span></div><p class="comment-text">短剧速览合集的律政单元比预期扎实，<em>第11集的反转</em>有一定铺垫，不是硬拗。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">陈</span><span class="comment-nick">陈默看片</span></div><p class="comment-text">城市夜行线第6集的水产市场拍得很克制，旁白信息量刚好，不会压过画面。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">苏</span><span class="comment-nick">苏打水不加冰</span></div><p class="comment-text">创作素材库的「城市延时」标签下有几条4K素材质量不错，但需要自己调色。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">周</span><span class="comment-nick">周末补片</span></div><p class="comment-text">工具评测那篇对比写得比较实在，提到了筛选响应速度这个容易被忽略的点。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">吴</span><span class="comment-nick">吴聊听听</span></div><p class="comment-text">不插电小剧场第5场的收音不错，环境音保留得刚好，适合晚上戴耳机听。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">郑</span><span class="comment-nick">郑在输入</span></div><p class="comment-text">五分钟经济学适合入门，但每集只有五分钟，有些概念讲得比较浅，需要自己补。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">王</span><span class="comment-nick">王不留行</span></div><p class="comment-text">开放世界速通的分段标记功能好用，直接跳到路线节点，不用拖进度条。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">何</span><span class="comment-nick">何以为家</span></div><p class="comment-text">沿海公路28天的海岛段落节奏慢了些，但夜市特写拍得挺有食欲。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">高</span><span class="comment-nick">高处不寒</span></div><p class="comment-text">分类按钮的筛选逻辑比较直接，点两次取消，比有些工具需要手动清除更省事。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">许</span><span class="comment-nick">许愿清单</span></div><p class="comment-text">希望实验短片频道多更新一些，目前12个团队的作品有点少，但选片质量还行。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">李</span><span class="comment-nick">李子树下</span></div><p class="comment-text">聚合型工具和垂直型工具那一段解释得清楚，之前一直没注意分类粒度的区别。</p></div>
+          <div class="comment-card"><div class="comment-user"><span class="comment-avatar">赵</span><span class="comment-nick">赵四小姐</span></div><p class="comment-text">短剧速览的悬疑单元第12集结尾留了钩子，看更新记录下周应该还有。</p></div>
+        </div>
+      </section>
+
+      <!-- 9. News -->
+      <section class="section" id="news">
+        <div class="section-header">
+          <h2>相关资讯</h2>
+        </div>
+        <div class="news-list">
+          <article class="news-item">
+            <div class="news-meta"><span class="news-date">2026-11-08</span><span class="tag">分类更新</span></div>
+            <h3 class="news-title">分类索引新增「实验短片」频道，收录 12 个独立团队作品</h3>
+            <p class="news-summary">该频道按创作团队和时长两个维度组织条目，支持筛选 10 分钟以下短片，首批收录作品以定格动画和城市观察为主。</p>
+          </article>
+          <article class="news-item">
+            <div class="news-meta"><span class="news-date">2026-11-07</span><span class="tag">工具评测</span></div>
+            <h3 class="news-title">免费视频聚合器横向对比补充篇：筛选响应速度实测</h3>
+            <p class="news-summary">补充篇新增三款工具在三级标签下的筛选耗时数据，并给出不同条目规模下的选择建议。</p>
+          </article>
+          <article class="news-item">
+            <div class="news-meta"><span class="news-date">2026-11-05</span><span class="tag">热播动态</span></div>
+            <h3 class="news-title">短剧速览合集第4季进入律政单元完结篇，热度升至榜首</h3>
+            <p class="news-summary">第11—12集上线后，该系列在热门榜单中从第三位升至第一位，评论区讨论集中在反转节点的铺垫方式。</p>
+          </article>
+          <article class="news-item">
+            <div class="news-meta"><span class="news-date">2026-11-03</span><span class="tag">更新节奏</span></div>
+            <h3 class="news-title">知识胶囊：五分钟经济学全系列完结，共 32 集</h3>
+            <p class="news-summary">最后一集讨论外部性与公共品，制作方同步放出了概念索引页，可按经济学概念跳转到对应分集。</p>
+          </article>
+          <article class="news-item">
+            <div class="news-meta"><span class="news-date">2026-11-01</span><span class="tag">内容策略</span></div>
+            <h3 class="news-title">11 月首周热门榜单刷新：纪录片与工具评测进入前三</h3>
+            <p class="news-summary">城市夜行线凭借第6集水产市场专题保持第二，工具评测横向对比凭借实测数据升至第三。</p>
+          </article>
+          <article class="news-item">
+            <div class="news-meta"><span class="news-date">2026-10-28</span><span class="tag">社区讨论</span></div>
+            <h3 class="news-title">用户讨论焦点：聚合工具的分类粒度和标签重叠问题</h3>
+            <p class="news-summary">有用户指出部分工具在「短剧」和「影视速览」之间存在标签重叠，建议使用前先查看标签说明页确认归属。</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 10. Related recommendations -->
+      <section class="section" id="related">
+        <div class="section-header">
+          <h2>相关推荐</h2>
+        </div>
+        <div class="tag-cloud">
+          <a href="/#featured">竖屏短剧合集</a>
+          <a href="/#featured">经济学概念索引</a>
+          <a href="/#featured">城市观察纪录片</a>
+          <a href="/#featured">4K 城市空镜素材</a>
+          <a href="/#featured">开放世界路线实录</a>
+          <a href="/#featured">不插电现场合集</a>
+          <a href="/#featured">聚合工具筛选逻辑</a>
+          <a href="/#featured">沿海自驾纪实系列</a>
+        </div>
+      </section>
+
+      <!-- 11. Ranking (supplementary) -->
+      <section class="section" id="ranking">
+        <div class="section-header">
+          <h2>热门榜单</h2>
+        </div>
+        <div class="ranking-list">
+          <div class="rank-item"><span class="rank-num top">1</span><div class="rank-info"><strong>短剧速览合集 第4季</strong><span>短剧速览 · 更新至EP12</span></div><span class="rank-score">9.2</span></div>
+          <div class="rank-item"><span class="rank-num top">2</span><div class="rank-info"><strong>工具评测：聚合器横向对比</strong><span>工具评测 · 11月6日发布</span></div><span class="rank-score">9.1</span></div>
+          <div class="rank-item"><span class="rank-num top">3</span><div class="rank-info"><strong>短视频创作素材库 11月精选</strong><span>创作素材 · 每周更新</span></div><span class="rank-score">9.0</span></div>
+          <div class="rank-item"><span class="rank-num">4</span><div class="rank-info"><strong>纪录片：城市夜行线</strong><span>纪录片 · 全6集</span></div><span class="rank-score">8.9</span></div>
+          <div class="rank-item"><span class="rank-num">5</span><div class="rank-info"><strong>知识胶囊：五分钟经济学</strong><span>知识科普 · 已完结</span></div><span class="rank-score">8.7</span></div>
+          <div class="rank-item"><span class="rank-num">6</span><div class="rank-info"><strong>音乐现场：不插电小剧场</strong><span>音乐现场 · 更新至第5场</span></div><span class="rank-score">8.6</span></div>
+          <div class="rank-item"><span class="rank-num">7</span><div class="rank-info"><strong>游戏实录：开放世界速通合集</strong><span>游戏实录 · 更新至第9期</span></div><span class="rank-score">8.4</span></div>
+          <div class="rank-item"><span class="rank-num">8</span><div class="rank-info"><strong>旅行纪实：沿海公路28天</strong><span>旅行纪实 · 全12集</span></div><span class="rank-score">8.3</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Right sidebar -->
+    <aside class="sidebar" aria-label="辅助栏">
+      <div class="side-card">
+        <h3>实时热榜</h3>
+        <ul class="hot-list">
+          <li><span class="hot-index hot">1</span><span class="hot-name">短剧速览合集 第4季</span><span class="hot-badge">更新</span></li>
+          <li><span class="hot-index hot">2</span><span class="hot-name">工具评测横向对比</span><span class="hot-badge">新</span></li>
+          <li><span class="hot-index hot">3</span><span class="hot-name">创作素材库11月</span><span class="hot-badge">更新</span></li>
+          <li><span class="hot-index">4</span><span class="hot-name">城市夜行线 第6集</span></li>
+          <li><span class="hot-index">5</span><span class="hot-name">五分钟经济学 完结</span></li>
+          <li><span class="hot-index">6</span><span class="hot-name">不插电小剧场 第5场</span></li>
+          <li><span class="hot-index">7</span><span class="hot-name">开放世界速通 第9期</span></li>
+          <li><span class="hot-index">8</span><span class="hot-name">沿海公路28天 第10集</span></li>
+        </ul>
+      </div>
+      <div class="side-card">
+        <h3>热门标签</h3>
+        <div class="sidebar-tags">
+          <a href="/#featured">短剧速览</a>
+          <a href="/#featured">知识科普</a>
+          <a href="/#featured">纪录片</a>
+          <a href="/#featured">创作素材</a>
+          <a href="/#featured">工具评测</a>
+          <a href="/#featured">游戏实录</a>
+          <a href="/#featured">音乐现场</a>
+          <a href="/#featured">实验短片</a>
+          <a href="/#featured">旅行纪实</a>
+        </div>
+      </div>
+      <div class="side-card">
+        <h3>条目时间线</h3>
+        <ul class="hot-list">
+          <li><span class="hot-index" style="font-size:.65rem;">11-08</span><span class="hot-name">短剧速览 EP12 上线</span></li>
+          <li><span class="hot-index" style="font-size:.65rem;">11-07</span><span class="hot-name">速通合集 第9期</span></li>
+          <li><span class="hot-index" style="font-size:.65rem;">11-06</span><span class="hot-name">工具评测补充篇</span></li>
+          <li><span class="hot-index" style="font-size:.65rem;">11-05</span><span class="hot-name">沿海公路 第10集</span></li>
+          <li><span class="hot-index" style="font-size:.65rem;">11-03</span><span class="hot-name">榜单首周刷新</span></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-text">51免费版视频</div>
+        <p>免费视频工具导航与条目索引，按类型整理短剧速览、知识科普、纪录片、创作素材等方向，辅助筛选与比较。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容频道</h4>
+        <ul>
+          <li><a href="/#featured">短剧速览</a></li>
+          <li><a href="/#featured">知识科普</a></li>
+          <li><a href="/#featured">纪录片</a></li>
+          <li><a href="/#featured">创作素材</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>工具与参考</h4>
+        <ul>
+          <li><a href="/#deep-dive">类型差异解析</a></li>
+          <li><a href="/#guide">消费顺序指南</a></li>
+          <li><a href="/#faq">常见问题</a></li>
+          <li><a href="/#ranking">热门榜单</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>社区与动态</h4>
+        <ul>
+          <li><a href="/#comments">用户评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#updates">更新记录</a></li>
+          <li><a href="/#related">延伸方向</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 51免费版视频 · 内容导航示例</span>
+      <span class="disclaimer">部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // Search
+    var searchInput = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    var feedback = document.getElementById('searchFeedback');
+    var featuredGrid = document.getElementById('featuredGrid');
+    var allCards = Array.from(featuredGrid.querySelectorAll('.featured-card'));
+    var allUpdates = Array.from(document.querySelectorAll('.update-item'));
+    var activeCategory = '';
+
+    function updateVisibility() {
+      var q = searchInput.value.trim().toLowerCase();
+      var visibleCount = 0;
+
+      allCards.forEach(function(card) {
+        var title = (card.getAttribute('data-title') || '').toLowerCase();
+        var text = card.textContent.toLowerCase();
+        var catMatch = !activeCategory || text.indexOf(activeCategory.toLowerCase()) !== -1;
+        var qMatch = !q || title.indexOf(q) !== -1 || text.indexOf(q) !== -1;
+        var show = catMatch && qMatch;
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+
+      // also hide/show updates based on q
+      allUpdates.forEach(function(item) {
+        var text = item.textContent.toLowerCase();
+        var show = !q || text.indexOf(q) !== -1;
+        item.style.display = show ? '' : 'none';
+      });
+
+      // feedback
+      if (q) {
+        if (visibleCount === 0) {
+          feedback.textContent = '没有找到与「' + searchInput.value.trim() + '」匹配的条目，试试其他关键词，或点击分类按钮浏览。';
+          feedback.classList.add('visible');
+        } else {
+          feedback.textContent = '找到 ' + visibleCount + ' 个与「' + searchInput.value.trim() + '」相关的条目。';
+          feedback.classList.add('visible');
+        }
+      } else if (activeCategory) {
+        if (visibleCount === 0) {
+          feedback.textContent = '「' + activeCategory + '」分类下暂无条目。';
+          feedback.classList.add('visible');
+        } else {
+          feedback.textContent = '已筛选「' + activeCategory + '」分类，共 ' + visibleCount + ' 个条目。';
+          feedback.classList.add('visible');
+        }
+      } else {
+        feedback.classList.remove('visible');
+        feedback.textContent = '';
+      }
+
+      // no-results placeholder
+      var existingNo = featuredGrid.querySelector('.no-results');
+      if (visibleCount === 0 && (q || activeCategory)) {
+        if (!existingNo) {
+          var div = document.createElement('div');
+          div.className = 'no-results';
+          div.textContent = '没有匹配的精选条目';
+          featuredGrid.appendChild(div);
+        }
+      } else if (existingNo) {
+        existingNo.remove();
+      }
+    }
+
+    searchBtn.addEventListener('click', updateVisibility);
+    searchInput.addEventListener('input', updateVisibility);
+
+    // Category filter
+    var catBtns = document.querySelectorAll('.category-btn');
+    catBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var cat = btn.getAttribute('data-category');
+        if (activeCategory === cat) {
+          activeCategory = '';
+          catBtns.forEach(function(b) { b.style.borderColor = ''; b.style.background = ''; b.style.color = ''; });
+        } else {
+          activeCategory = cat;
+          catBtns.forEach(function(b) {
+            b.style.borderColor = '';
+            b.style.background = '';
+            b.style.color = '';
+          });
+          btn.style.borderColor = 'var(--accent)';
+          btn.style.background = 'var(--accent-soft)';
+          btn.style.color = 'var(--accent-ink)';
+        }
+        updateVisibility();
+      });
+    });
+
+    // keyboard focus styles
+    document.querySelectorAll('a, button, summary').forEach(function(el) {
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (el.tagName === 'SUMMARY' || el.tagName === 'BUTTON' || el.tagName === 'A') {
+            // handled natively
+          }
+        }
+      });
+    });
+  })();
+</script>
+</body>
+        </html>
