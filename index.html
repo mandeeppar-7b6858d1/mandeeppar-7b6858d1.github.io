@@ -1,0 +1,1543 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻花影视 - 喜剧影视内容聚合</title>
+  <meta name="description" content="麻花影视聚合喜剧电影、舞台剧改编、都市情景喜剧与短剧内容，提供精选片单、深度解析、更新动态、分类筛选和观众评论，适合喜欢轻松喜剧的观众浏览。">
+  <meta name="keywords" content="喜剧电影, 舞台剧改编, 都市情景喜剧, 短剧片单, 喜剧厂牌">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23c0392b'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E麻%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --primary: #c0392b;
+      --primary-light: #e74c3c;
+      --primary-soft: #f9e9e7;
+      --accent: #f39c12;
+      --accent-soft: #fef5e7;
+      --bg: #fdfaf8;
+      --panel: #ffffff;
+      --text: #2c2c2c;
+      --text-light: #6b6b6b;
+      --border: #e8e0dc;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --header-height: 120px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-light); }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* 吸顶公告条 */
+    .announce-bar {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      letter-spacing: 0.5px;
+    }
+    .announce-bar strong { color: #ffeaa7; }
+
+    /* 吸顶页头 */
+    .site-header {
+      position: sticky;
+      top: 38px;
+      z-index: 99;
+      background: var(--panel);
+      border-bottom: 2px solid var(--primary-soft);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .logo svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .main-nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .main-nav a {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: var(--text-light);
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .main-nav a:hover, .main-nav a.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      gap: 6px;
+    }
+    .header-search input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      width: 140px;
+      color: var(--text);
+    }
+    .header-search button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 14px;
+      padding: 2px 12px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* 主容器 */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* 首屏 */
+    .hero {
+      background: linear-gradient(135deg, #fff5f3 0%, #fef9f6 60%, #fdf2ee 100%);
+      border-radius: 16px;
+      padding: 40px 36px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-text { flex: 1; min-width: 260px; }
+    .hero-text h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .hero-text .hero-desc {
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 10px 26px;
+      border-radius: 24px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all .2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-light); color: #fff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary-soft); color: var(--primary); }
+    .hero-visual {
+      flex-shrink: 0;
+      width: 280px;
+      height: 200px;
+      position: relative;
+    }
+    .hero-visual svg { width: 100%; height: 100%; }
+
+    /* 三栏布局 */
+    .layout-three {
+      display: grid;
+      grid-template-columns: 180px 1fr 260px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* 左频道索引 */
+    .channel-index {
+      position: sticky;
+      top: calc(var(--header-height) + 48px);
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      box-shadow: var(--shadow);
+    }
+    .channel-index h3 {
+      font-size: 15px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .channel-index ul li a {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text-light);
+      transition: all .15s;
+    }
+    .channel-index ul li a:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* 右辅助栏 */
+    .sidebar-right {
+      position: sticky;
+      top: calc(var(--header-height) + 48px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .side-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .side-card h3 {
+      font-size: 15px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hot-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13px;
+    }
+    .hot-list li:last-child { border-bottom: none; }
+    .hot-list .rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .hot-list li:nth-child(1) .rank { background: var(--primary); color: #fff; }
+    .hot-list li:nth-child(2) .rank { background: var(--accent); color: #fff; }
+    .hot-list li:nth-child(3) .rank { background: #f39c12; color: #fff; }
+    .update-stream li {
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      color: var(--text-light);
+    }
+    .update-stream li:last-child { border-bottom: none; }
+    .update-stream .upd-name { color: var(--text); font-weight: 600; }
+    .update-stream .upd-time { font-size: 12px; color: #999; margin-left: 4px; }
+
+    /* 主内容区 */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-width: 0;
+    }
+
+    /* 板块通用 */
+    .section {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      box-shadow: var(--shadow);
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .bar {
+      width: 4px;
+      height: 22px;
+      background: var(--primary);
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .section-sub {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 18px;
+    }
+
+    /* 概览 */
+    .overview-text p {
+      margin-bottom: 10px;
+      text-indent: 2em;
+      font-size: 15px;
+      color: #444;
+    }
+
+    /* 精选卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      transition: transform .2s, box-shadow .2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(192,57,43,0.1); }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card-body { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .tag.accent { background: var(--accent-soft); color: #d68910; }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 8px;
+    }
+    .card-meta {
+      font-size: 12px;
+      color: #999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-meta .hot { color: var(--primary); font-weight: 600; }
+
+    /* 紧凑列表 */
+    .compact-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+    }
+    .compact-list li:last-child { border-bottom: none; }
+    .compact-list .item-name {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 130px;
+    }
+    .compact-list .item-desc {
+      color: var(--text-light);
+      font-size: 13px;
+      flex: 1;
+    }
+    .compact-list .item-time {
+      font-size: 12px;
+      color: #aaa;
+      white-space: nowrap;
+    }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 16px 8px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      transition: all .2s;
+      text-align: center;
+    }
+    .category-item:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .category-item .cat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .category-item .cat-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* 深度解析 */
+    .deep-dive h3 {
+      font-size: 17px;
+      color: var(--primary);
+      margin: 20px 0 8px;
+      padding-left: 10px;
+      border-left: 3px solid var(--primary);
+    }
+    .deep-dive h3:first-of-type { margin-top: 10px; }
+    .deep-dive p {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #444;
+      text-indent: 2em;
+    }
+    .deep-dive ul {
+      margin: 6px 0 14px 24px;
+      list-style: disc;
+      font-size: 14px;
+      color: #555;
+    }
+    .deep-dive ul li { margin-bottom: 4px; }
+
+    /* 体验指南步骤 */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .step-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .step-body h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+    .step-body p {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* FAQ */
+    details {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    details summary {
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      background: var(--bg);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: "+";
+      font-size: 20px;
+      color: var(--primary);
+      font-weight: 400;
+    }
+    details[open] summary::after { content: "−"; }
+    details .faq-answer {
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+    }
+
+    /* 评论 */
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .comment-item {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .comment-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .comment-body { flex: 1; }
+    .comment-user {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .comment-text {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+    .comment-meta {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* 资讯 */
+    .news-list li {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .news-list li:last-child { border-bottom: none; }
+    .news-list img {
+      width: 120px;
+      height: 80px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .news-body { flex: 1; min-width: 0; }
+    .news-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .news-summary { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+    .news-date { font-size: 12px; color: #aaa; margin-top: 4px; }
+
+    /* 相关推荐标签 */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tag-cloud a {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-light);
+      transition: all .15s;
+    }
+    .tag-cloud a:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* 榜单时间线 */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 16px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -18px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--primary-soft);
+    }
+    .timeline-item h4 { font-size: 15px; margin-bottom: 2px; }
+    .timeline-item p { font-size: 13px; color: var(--text-light); }
+
+    /* 页尾 */
+    .site-footer {
+      background: #2c2c2c;
+      color: #bbb;
+      margin-top: 40px;
+      padding: 36px 24px 20px;
+    }
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+    .footer-brand .f-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .footer-brand p { font-size: 13px; line-height: 1.7; color: #999; }
+    .footer-col h4 {
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .footer-col ul li {
+      margin-bottom: 6px;
+    }
+    .footer-col ul li a {
+      color: #aaa;
+      font-size: 13px;
+      transition: color .15s;
+    }
+    .footer-col ul li a:hover { color: var(--primary-light); }
+    .footer-bottom {
+      max-width: 1360px;
+      margin: 24px auto 0;
+      padding-top: 16px;
+      border-top: 1px solid #444;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* 滚动偏移 */
+    [id] {
+      scroll-margin-top: calc(var(--header-height) + 60px);
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .layout-three {
+        grid-template-columns: 1fr 260px;
+      }
+      .channel-index {
+        position: static;
+        display: none;
+      }
+      .main-nav { gap: 2px; }
+      .main-nav a { padding: 4px 8px; font-size: 13px; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text .hero-desc { margin: 0 auto 20px; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { width: 200px; height: 140px; }
+    }
+    @media (max-width: 740px) {
+      .layout-three { grid-template-columns: 1fr; }
+      .sidebar-right { position: static; }
+      .header-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+      .header-search input { width: 100%; }
+      .hero-text h1 { font-size: 28px; }
+      .hero { padding: 24px 18px; }
+      .section { padding: 18px 14px; }
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .news-list img { width: 90px; height: 60px; }
+      .hero-visual { display: none; }
+      .announce-bar { font-size: 12px; padding: 6px 10px; }
+      .site-header { top: 32px; }
+      :root { --header-height: 180px; }
+      .compact-list li { flex-wrap: wrap; }
+    }
+    @media (max-width: 420px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    /* 搜索无结果 */
+    .no-result-msg {
+      display: none;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+    .search-highlight { background: #ffeaa7; }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="announce-bar" role="status">
+    <strong>本周更新</strong>：新增 8 部麻花舞台剧高清修复版 · 《乌龙山伯爵》2026 巡演纪录片已上线 · 秋季喜剧短剧片单更新 12 条
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="/#hero" aria-label="麻花影视首页">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="100" height="100" rx="20" fill="#c0392b"/>
+          <text x="50" y="68" font-size="52" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="bold">麻</text>
+        </svg>
+        <span>麻花影视</span>
+      </a>
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#overview" class="active">概览</a>
+        <a href="/#featured">精选</a>
+        <a href="/#latest">最新</a>
+        <a href="/#categories">分类</a>
+        <a href="/#deep-dive">深度</a>
+        <a href="/#guide">指南</a>
+        <a href="/#faq">问答</a>
+        <a href="/#comments">评论</a>
+        <a href="/#news">资讯</a>
+        <a href="/#ranking">榜单</a>
+      </nav>
+      <div class="header-search">
+        <input type="search" id="searchInput" placeholder="搜索片名/类型/演员" aria-label="搜索站内内容">
+        <button type="button" id="searchBtn" aria-label="搜索">搜索</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- 首屏 -->
+    <section class="hero" id="hero">
+      <div class="hero-text">
+        <h1>麻花影视</h1>
+        <p class="hero-desc">
+          聚合开心麻花舞台剧改编电影、都市情景喜剧、爆笑短剧与线下巡演实录，提供片单精选、深度看点解析、更新日历与观众口碑。适合想找轻松喜剧、了解麻花系作品脉络的观众。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/#featured">浏览精选片单</a>
+          <a class="btn btn-outline" href="/#latest">查看今日更新</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="30" width="240" height="140" rx="12" fill="#fff5f3" stroke="#e8b4ae" stroke-width="2"/>
+          <rect x="40" y="50" width="100" height="70" rx="6" fill="#f9e9e7" stroke="#c0392b" stroke-width="1.5"/>
+          <circle cx="90" cy="85" r="16" fill="#c0392b" opacity="0.8"/>
+          <polygon points="86,77 86,93 100,85" fill="#fff"/>
+          <rect x="155" y="50" width="85" height="10" rx="3" fill="#e8b4ae"/>
+          <rect x="155" y="68" width="70" height="8" rx="3" fill="#f0d0cc"/>
+          <rect x="155" y="84" width="80" height="8" rx="3" fill="#f0d0cc"/>
+          <rect x="40" y="135" width="200" height="8" rx="3" fill="#f0d0cc"/>
+          <rect x="40" y="150" width="160" height="8" rx="3" fill="#f0d0cc"/>
+          <circle cx="240" cy="46" r="16" fill="#f39c12" opacity="0.9"/>
+          <text x="240" y="52" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">笑</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 三栏布局 -->
+    <div class="layout-three">
+
+      <!-- 左频道索引 -->
+      <aside class="channel-index" aria-label="频道索引">
+        <h3>频道索引</h3>
+        <ul>
+          <li><a href="/#overview">喜剧电影</a></li>
+          <li><a href="/#featured">舞台剧改编</a></li>
+          <li><a href="/#latest">都市情景喜剧</a></li>
+          <li><a href="/#categories">爆笑短剧</a></li>
+          <li><a href="/#deep-dive">演员阵容</a></li>
+          <li><a href="/#guide">观看顺序</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#news">行业动态</a></li>
+          <li><a href="/#ranking">热度榜单</a></li>
+          <li><a href="/#comments">观众评论</a></li>
+        </ul>
+      </aside>
+
+      <!-- 中主内容 -->
+      <main class="main-content">
+
+        <!-- 1. 主题领域概览 -->
+        <section class="section" id="overview">
+          <h2 class="section-title"><span class="bar"></span>麻花影视内容领域概览</h2>
+          <p class="section-sub">从舞台到银幕，从长片到短剧，梳理麻花系喜剧的主要类型与代表方向</p>
+          <div class="overview-text">
+            <p>“麻花影视”所涵盖的内容，核心围绕开心麻花团队及其关联厂牌出品的喜剧作品。从 2015 年《夏洛特烦恼》开启舞台剧改编电影的热潮，到《西虹市首富》《独行月球》等科幻喜剧尝试，再到近年《这个杀手不太冷静》《超能一家人》等奇幻喜剧，开心麻花逐步形成了“舞台剧基因 + 电影工业”的独特创作路径。这些作品通常以密集的笑点、夸张的表演和带有现实讽刺的剧情为特征，适合希望在轻松氛围中获得情绪释放的观众。</p>
+            <p>舞台剧改编电影是麻花影视最鲜明的标签。早期作品直接沿用舞台剧剧本和演员班底，如《夏洛特烦恼》脱胎于同名舞台剧，保留了舞台式的夸张表演和密集台词梗；《乌龙山伯爵》作为舞台剧经典，巡演多年后才推出高清修复版影像。这类作品的优势在于经过舞台检验的喜剧节奏，但改编时也面临“舞台感过重”的批评，因此近年作品开始有意识地调整镜头语言和场景调度。</p>
+            <p>都市情景喜剧与短剧是近年的新方向。开心麻花在 2024 年后陆续推出《麻花特开心》等团综衍生内容，以及《江湖学院》《二维码杀手》等网络短剧，时长从 5 分钟到 20 分钟不等，节奏更快、题材更贴近年轻观众。这些短剧通常在自有平台和合作视频平台同步更新，适合碎片时间观看。此外，线下剧场巡演实录、演员访谈和幕后纪录片也是麻花影视内容生态的重要组成部分，为观众提供了了解作品创作过程的角度。</p>
+          </div>
+        </section>
+
+        <!-- 2. 精选内容推荐 -->
+        <section class="section" id="featured">
+          <h2 class="section-title"><span class="bar"></span>精选喜剧片单推荐</h2>
+          <p class="section-sub">涵盖电影长片、舞台剧影像、短剧与团综，按类型与口碑筛选</p>
+          <div class="card-grid">
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-xialuo47/400/300" alt="夏洛特烦恼电影海报风格封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">夏洛特烦恼</h3>
+                <div class="card-tags"><span class="tag">舞台剧改编</span><span class="tag">穿越喜剧</span><span class="tag accent">经典</span></div>
+                <p class="card-desc">2015 年上映，改编自同名舞台剧。讲述中年失意的夏洛穿越回校园时代，重新选择人生的故事。密集的怀旧金曲梗和沈腾马丽的默契表演成为一代喜剧记忆。</p>
+                <div class="card-meta"><span>评分 8.2</span><span class="hot">热度 98.6 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-xihong58/400/300" alt="西虹市首富电影场景封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">西虹市首富</h3>
+                <div class="card-tags"><span class="tag">足球喜剧</span><span class="tag">花钱挑战</span><span class="tag accent">高票房</span></div>
+                <p class="card-desc">2018 年上映，讲述丙级球队守门员王多鱼接受“一个月花光十亿”挑战的故事。以夸张的消费奇观和足球赛场的热血反转制造笑点，是麻花商业喜剧的代表作之一。</p>
+                <div class="card-meta"><span>评分 7.8</span><span class="hot">热度 92.3 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-duli62/400/300" alt="独行月球科幻喜剧封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">独行月球</h3>
+                <div class="card-tags"><span class="tag">科幻喜剧</span><span class="tag">太空生存</span><span class="tag accent">视效大片</span></div>
+                <p class="card-desc">2022 年上映，沈腾饰演的维修工被意外遗留在月球，成为“宇宙最后的人类”。影片将科幻灾难与麻花式搞笑结合，袋鼠“刚子”的互动成为名场面。</p>
+                <div class="card-meta"><span>评分 7.6</span><span class="hot">热度 89.7 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-shashou73/400/300" alt="这个杀手不太冷静电影封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">这个杀手不太冷静</h3>
+                <div class="card-tags"><span class="tag">舞台剧改编</span><span class="tag">戏中戏</span><span class="tag accent">黑马</span></div>
+                <p class="card-desc">2022 年春节档黑马，改编自三谷幸喜舞台剧。魏翔饰演的龙套演员误入真实黑帮交易，在“扮演杀手”的谎言中制造连环笑料，致敬经典电影桥段密集。</p>
+                <div class="card-meta"><span>评分 7.4</span><span class="hot">热度 85.1 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-chaoneng84/400/300" alt="超能一家人奇幻喜剧封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">超能一家人</h3>
+                <div class="card-tags"><span class="tag">奇幻喜剧</span><span class="tag">家庭题材</span><span class="tag accent">合家欢</span></div>
+                <p class="card-desc">2023 年上映，讲述一家人意外获得超能力后与邪恶市长对抗的故事。影片尝试将家庭温情与超能力打斗结合，视觉特效和家庭互动是主要看点。</p>
+                <div class="card-meta"><span>评分 6.9</span><span class="hot">热度 78.4 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-wulong95/400/300" alt="乌龙山伯爵舞台剧修复版封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">乌龙山伯爵（高清修复版）</h3>
+                <div class="card-tags"><span class="tag">舞台剧影像</span><span class="tag">经典巡演</span><span class="tag accent">新上线</span></div>
+                <p class="card-desc">开心麻花经典舞台剧，讲述一个无业青年意外获得百万支票后卷入银行劫案的荒诞故事。2026 年 11 月上线高清修复版，保留原版舞台调度与观众互动氛围。</p>
+                <div class="card-meta"><span>评分 9.0</span><span class="hot">热度 76.8 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-jianghu16/400/300" alt="江湖学院网络短剧封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">江湖学院</h3>
+                <div class="card-tags"><span class="tag">网络短剧</span><span class="tag">武侠喜剧</span><span class="tag accent">更新中</span></div>
+                <p class="card-desc">2026 年 10 月开播的古装武侠短剧，每集 12 分钟。讲述现代厨师误入古代江湖学院后，用美食和现代思维“破解”武林纷争的爆笑故事，目前已更新至第 8 集。</p>
+                <div class="card-meta"><span>评分 7.9</span><span class="hot">热度 72.5 万</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/mahua-matian27/400/300" alt="麻花特开心团综封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">麻花特开心</h3>
+                <div class="card-tags"><span class="tag">团综喜剧</span><span class="tag">即兴挑战</span><span class="tag accent">综艺</span></div>
+                <p class="card-desc">开心麻花演员团建式综艺，每期设定不同即兴喜剧挑战，如“用一句台词演完一部电影”“无实物表演猜谜”。展现演员的临场反应和幕后默契，适合轻松下饭。</p>
+                <div class="card-meta"><span>评分 8.1</span><span class="hot">热度 68.9 万</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 3. 最新更新 / 动态 -->
+        <section class="section" id="latest">
+          <h2 class="section-title"><span class="bar"></span>最新更新与热播动态</h2>
+          <p class="section-sub">今日及近期上线、更新、巡演相关条目</p>
+          <ul class="compact-list">
+            <li><span class="item-name">《江湖学院》第 8 集</span><span class="item-desc">“厨神争霸赛”上线，主角用火锅底料破解暗器阵</span><span class="item-time">今天 10:00</span></li>
+            <li><span class="item-name">《乌龙山伯爵》修复版</span><span class="item-desc">高清修复版全片上线，新增 10 分钟幕后采访</span><span class="item-time">今天 09:30</span></li>
+            <li><span class="item-name">《麻花特开心》第 12 期</span><span class="item-desc">“无实物表演”专场，沈腾即兴模仿太空行走</span><span class="item-time">昨天 21:10</span></li>
+            <li><span class="item-name">《二维码杀手》短剧</span><span class="item-desc">第 1-6 集一次性放出，悬疑喜剧单元剧</span><span class="item-time">昨天 18:00</span></li>
+            <li><span class="item-name">《夏洛特烦恼》4K 重映</span><span class="item-desc">部分影院开启 11 月限定重映，含主创映后彩蛋</span><span class="item-time">11 月 6 日</span></li>
+            <li><span class="item-name">《独行月球》幕后纪录片</span><span class="item-desc">“袋鼠刚子的诞生”特效制作特辑上线</span><span class="item-time">11 月 5 日</span></li>
+            <li><span class="item-name">《超能一家人》导演剪辑版</span><span class="item-desc">新增 15 分钟家庭互动片段，平台独播</span><span class="item-time">11 月 3 日</span></li>
+            <li><span class="item-name">开心麻花 2026 巡演</span><span class="item-desc">《乌龙山伯爵》12 月杭州站开票，早鸟 9 折</span><span class="item-time">11 月 2 日</span></li>
+            <li><span class="item-name">《这个杀手不太冷静》</span><span class="item-desc">上线“戏中戏”解读弹幕版，含导演评论音轨</span><span class="item-time">11 月 1 日</span></li>
+            <li><span class="item-name">《西虹市首富》衍生短剧</span><span class="item-desc">“花钱挑战”互动短剧立项，预计 2027 年上线</span><span class="item-time">10 月 30 日</span></li>
+          </ul>
+        </section>
+
+        <!-- 4. 分类入口 -->
+        <section class="section" id="categories">
+          <h2 class="section-title"><span class="bar"></span>按类型浏览麻花作品</h2>
+          <p class="section-sub">根据内容形式与题材快速定位</p>
+          <div class="category-grid">
+            <a class="category-item" href="/#featured">
+              <span class="cat-icon">🎭</span>
+              <span class="cat-name">舞台剧改编电影</span>
+            </a>
+            <a class="category-item" href="/#featured">
+              <span class="cat-icon">🏙️</span>
+              <span class="cat-name">都市情景喜剧</span>
+            </a>
+            <a class="category-item" href="/#featured">
+              <span class="cat-icon">🎬</span>
+              <span class="cat-name">爆笑网络短剧</span>
+            </a>
+            <a class="category-item" href="/#featured">
+              <span class="cat-icon">🚀</span>
+              <span class="cat-name">科幻喜剧</span>
+            </a>
+            <a class="category-item" href="/#featured">
+              <span class="cat-icon">👨‍👩‍👧</span>
+              <span class="cat-name">合家欢家庭喜剧</span>
+            </a>
+            <a class="category-item" href="/#featured">
+              <span class="cat-icon">🎤</span>
+              <span class="cat-name">团综与真人秀</span>
+            </a>
+            <a class="category-item" href="/#news">
+              <span class="cat-icon">🎟️</span>
+              <span class="cat-name">线下巡演实录</span>
+            </a>
+            <a class="category-item" href="/#deep-dive">
+              <span class="cat-icon">🎥</span>
+              <span class="cat-name">幕后纪录片</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 5. 深度解析正文 -->
+        <section class="section deep-dive" id="deep-dive">
+          <h2 class="section-title"><span class="bar"></span>麻花喜剧的创作逻辑与类型差异</h2>
+          <p class="section-sub">从舞台基因、电影化改编到短剧节奏，理解不同作品的特点与评价维度</p>
+
+          <h3>舞台剧改编电影的“得”与“失”</h3>
+          <p>舞台剧改编是麻花影视最核心的创作路径。舞台剧经过数百场演出打磨，包袱节奏和观众反应已经高度成熟，改编电影时可以直接沿用经过验证的剧本结构。例如《夏洛特烦恼》的“穿越回校园”设定和“一剪梅”梗，在舞台剧中已经反复测试，搬到银幕后依然有效。但舞台剧的表演方式往往更夸张、台词密度更高，直接移植到电影中容易产生“舞台感”。近年作品如《这个杀手不太冷静》开始有意识地调整：保留舞台剧的戏中戏结构，但用电影化的镜头语言和场景调度来平衡，使非舞台观众也能自然进入故事。</p>
+
+          <h3>科幻与奇幻类型嫁接的风险与亮点</h3>
+          <p>《独行月球》和《超能一家人》代表了麻花向科幻、奇幻类型的拓展。前者将“月球生存”的硬核设定与袋鼠互动、直播梗结合，在视觉奇观和喜剧节奏之间找到了平衡点，但部分观众认为科幻逻辑经不起推敲；后者尝试家庭超能力题材，特效场面更多，但剧情冲突偏向低幼化，口碑出现分化。这两部作品的共同特点是：喜剧内核不变，但制作成本大幅提升，类型融合的难度也更高。对于观众而言，选择这类作品时可以关注“科幻设定是否为喜剧服务”——如果设定过于复杂而笑点密度下降，观影体验可能不如纯喜剧。</p>
+
+          <h3>短剧与团综：轻量化内容的节奏优势</h3>
+          <p>《江湖学院》《二维码杀手》等短剧每集 5—15 分钟，采用单元剧或连续剧情，节奏比电影更快。短剧的优势在于试错成本低，可以快速迭代题材，例如《江湖学院》将现代美食与古代武侠结合，每集一个“美食破案”小高潮，适合移动端碎片观看。团综《麻花特开心》则更偏即兴，演员在没有完整剧本的情况下完成挑战，笑点来自真实的临场反应，与精心编排的电影喜剧形成互补。对于想快速了解麻花演员风格的新观众，团综是门槛较低的选择；而对于偏好完整叙事的观众，舞台剧改编电影仍是首选。</p>
+
+          <h3>评价麻花作品的几个具体维度</h3>
+          <ul>
+            <li><strong>笑点密度与节奏</strong>：每分钟有效笑点数量，以及包袱之间的衔接是否自然。舞台剧改编作品通常笑点更密集，但可能显得“吵”；科幻喜剧笑点更分散，依赖情境。</li>
+            <li><strong>剧本完整度</strong>：故事是否有明确的三幕结构、人物成长弧线。部分早期作品偏向段子拼贴，近年作品更注重主线叙事。</li>
+            <li><strong>演员表演风格</strong>：沈腾、马丽、魏翔、艾伦等演员的喜剧节奏各不相同，观众可以按演员偏好选择作品。例如魏翔在《这个杀手不太冷静》中的独角戏比例很高，适合喜欢“表演型喜剧”的观众。</li>
+            <li><strong>制作规格</strong>：电影长片与短剧、团综的制作成本差异明显，视觉呈现和场景丰富度不同。如果追求影院级体验，优先选择《独行月球》《西虹市首富》等大制作。</li>
+          </ul>
+
+          <h3>从消费角度看：不同类型适合什么场景</h3>
+          <p>周末家庭观影可以选择《超能一家人》这类合家欢作品，超能力设定和孩子也能理解的笑点是主要优势；朋友聚会适合《西虹市首富》《夏洛特烦恼》等经典长片，笑点密集且认知度高；通勤或午休时间则适合《江湖学院》等短剧，单集时间短、剧情独立。对于想系统了解麻花创作脉络的观众，建议按“舞台剧改编电影 → 科幻/奇幻尝试 → 短剧/团综”的顺序观看，能更清晰地感受到团队在不同类型上的探索轨迹。</p>
+        </section>
+
+        <!-- 6. 体验指南 / 消费路径 -->
+        <section class="section" id="guide">
+          <h2 class="section-title"><span class="bar"></span>麻花影视观看入门路径</h2>
+          <p class="section-sub">从类型偏好出发的判断顺序与比较方法</p>
+          <div class="steps">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <h4>先确定你想看的类型</h4>
+                <p>如果喜欢完整故事和影院体验，优先选择舞台剧改编电影（《夏洛特烦恼》《这个杀手不太冷静》）；如果只想轻松下饭，选短剧（《江湖学院》）或团综（《麻花特开心》）；如果偏好视觉奇观，可以尝试科幻喜剧（《独行月球》）。</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <h4>按演员阵容缩小范围</h4>
+                <p>沈腾主演的作品通常更偏“冷幽默 + 肢体喜剧”，马丽主演的作品情感线更突出，魏翔、艾伦等演员的作品则各有风格。可以在演员列表中查看具体作品，再根据预告片或片段判断是否合口味。</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <h4>参考评分与评论中的具体反馈</h4>
+                <p>不要只看总分，重点看评论中提到的“笑点密度”“剧情是否完整”“结尾是否仓促”等具体维度。舞台剧改编作品可以关注“是否保留原版名场面”，短剧则关注“单集节奏是否拖沓”。</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <h4>类似条目比较时关注制作年代</h4>
+                <p>2015—2018 年的作品舞台感更强，2020 年后的作品电影化程度更高。如果对画面质感要求较高，可以优先选择近年作品；如果追求纯粹的喜剧节奏，早期经典作品依然值得回看。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. FAQ -->
+        <section class="section" id="faq">
+          <h2 class="section-title"><span class="bar"></span>常见问题</h2>
+          <p class="section-sub">关于麻花影视作品类型、更新与选择的问答</p>
+          <details>
+            <summary>麻花舞台剧改编电影和原创电影有什么区别？</summary>
+            <div class="faq-answer">舞台剧改编电影有舞台剧剧本打底，笑点节奏经过观众检验，但可能保留较多的舞台化表演；原创电影则更依赖电影剧本创作，镜头语言更自由。两者在麻花体系内都有代表作，选择时可以优先看预告片中表演风格是否让你觉得“自然”。</div>
+          </details>
+          <details>
+            <summary>《江湖学院》这类短剧一般多久更新一次？</summary>
+            <div class="faq-answer">《江湖学院》目前采用每周更新 2 集的节奏，每周四、周六各更新一集，单集时长约 12 分钟。遇到节假日或特殊活动可能会加更，具体可以查看更新动态板块。</div>
+          </details>
+          <details>
+            <summary>第一次接触麻花作品，从哪一部开始看比较好？</summary>
+            <div class="faq-answer">如果喜欢经典喜剧，建议从《夏洛特烦恼》开始，它的故事完整、笑点密集，是麻花舞台剧改编电影的代表作；如果偏好新鲜题材，可以尝试《这个杀手不太冷静》，戏中戏结构比较有趣；如果想快速了解演员风格，《麻花特开心》团综门槛较低。</div>
+          </details>
+          <details>
+            <summary>《独行月球》和《超能一家人》的喜剧风格有什么不同？</summary>
+            <div class="faq-answer">《独行月球》是科幻背景下的“孤独喜剧”，笑点更多来自主角与袋鼠的互动以及直播梗，情感线偏温情；《超能一家人》是家庭奇幻喜剧，笑点围绕超能力带来的混乱和家庭成员之间的冲突，风格更热闹、更低龄化。前者适合喜欢太空题材的观众，后者适合合家欢场景。</div>
+          </details>
+          <details>
+            <summary>麻花短剧和电影长片在制作上差距大吗？</summary>
+            <div class="faq-answer">差距比较明显。电影长片有完整的场景搭建、特效制作和后期周期，视觉规格更高；短剧预算和拍摄周期更紧张，场景相对简单，更依赖剧本和演员表演。但短剧的优势是节奏快、题材灵活，适合碎片化观看。</div>
+          </details>
+          <details>
+            <summary>《乌龙山伯爵》修复版和原版舞台剧有区别吗？</summary>
+            <div class="faq-answer">修复版主要提升了画面分辨率和声音质量，舞台调度和台词基本保持不变，另外新增了约 10 分钟的幕后采访，包括主创对经典段落的回顾。如果是第一次看，修复版的观看体验更好；如果是老观众，幕后采访是额外的补充内容。</div>
+          </details>
+        </section>
+
+        <!-- 8. 用户评论 -->
+        <section class="section" id="comments">
+          <h2 class="section-title"><span class="bar"></span>观众评论精选</h2>
+          <p class="section-sub">来自不同观众的观影反馈，包含正面与中性评价</p>
+          <div class="comment-list">
+            <div class="comment-item">
+              <div class="comment-avatar">笑</div>
+              <div class="comment-body">
+                <div class="comment-user">喜剧老饕</div>
+                <div class="comment-text">《夏洛特烦恼》看了不下十遍，每次还是能被“一剪梅”那段笑到。舞台剧演员的节奏感确实不一样，包袱抖得特别准。</div>
+                <div class="comment-meta">11 月 7 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">月</div>
+              <div class="comment-body">
+                <div class="comment-user">月球打工人</div>
+                <div class="comment-text">《独行月球》的袋鼠刚子太抢戏了，沈腾对着空气演戏那段真的厉害。不过科幻设定有些地方比较糊弄，当喜剧看没问题。</div>
+                <div class="comment-meta">11 月 6 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">江</div>
+              <div class="comment-body">
+                <div class="comment-user">江湖小虾米</div>
+                <div class="comment-text">《江湖学院》第 8 集笑死我了，用火锅底料破暗器阵是什么鬼才编剧。每集才 12 分钟，太适合午休看了，希望快点更新。</div>
+                <div class="comment-meta">11 月 8 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">杀</div>
+              <div class="comment-body">
+                <div class="comment-user">戏中戏爱好者</div>
+                <div class="comment-text">《这个杀手不太冷静》魏翔的表演撑起了整部电影，戏中戏的结构很巧妙。不过后半段稍微有点拖，精简一点会更好。</div>
+                <div class="comment-meta">11 月 5 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">超</div>
+              <div class="comment-body">
+                <div class="comment-user">合家欢观影团</div>
+                <div class="comment-text">带孩子看的《超能一家人》，小孩看得挺开心，大人觉得有些笑点比较幼稚。家庭互动部分还不错，特效也过得去。</div>
+                <div class="comment-meta">11 月 4 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">乌</div>
+              <div class="comment-body">
+                <div class="comment-user">乌龙山老观众</div>
+                <div class="comment-text">修复版清晰度提升明显，终于能在屏幕上看清舞台细节了。幕后采访里导演聊当年巡演的故事很有意思，老粉狂喜。</div>
+                <div class="comment-meta">11 月 3 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">麻</div>
+              <div class="comment-body">
+                <div class="comment-user">麻花团综粉</div>
+                <div class="comment-text">《麻花特开心》的即兴环节比正片电影还搞笑，沈腾模仿太空行走那段我来回看了五遍。希望多出这种没有剧本的节目。</div>
+                <div class="comment-meta">11 月 2 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">西</div>
+              <div class="comment-body">
+                <div class="comment-user">西虹市市民</div>
+                <div class="comment-text">《西虹市首富》的“花钱挑战”设定现在看依然有趣，王多鱼请股神吃饭那段讽刺拉满。就是结尾有点仓促，感觉还能再展开。</div>
+                <div class="comment-meta">11 月 1 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">二</div>
+              <div class="comment-body">
+                <div class="comment-user">二维码扫不出</div>
+                <div class="comment-text">《二维码杀手》短剧刚出，悬疑加喜剧的搭配有点意思，不过前两集节奏偏慢，希望后面能加快。单元剧形式追起来不累。</div>
+                <div class="comment-meta">10 月 30 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">艾</div>
+              <div class="comment-body">
+                <div class="comment-user">艾伦的粉丝</div>
+                <div class="comment-text">艾伦在《夏洛特烦恼》里演的大春太经典了，那种傻乎乎又真诚的感觉别人演不出来。希望他能多接一些主角戏。</div>
+                <div class="comment-meta">10 月 29 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">马</div>
+              <div class="comment-body">
+                <div class="comment-user">马丽演技粉</div>
+                <div class="comment-text">马丽在《这个杀手不太冷静》里的表现被低估了，她把那种又飒又柔的角色处理得很自然。希望麻花多给她写一些有层次的女性角色。</div>
+                <div class="comment-meta">10 月 28 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">魏</div>
+              <div class="comment-body">
+                <div class="comment-user">魏翔加油</div>
+                <div class="comment-text">魏翔终于当主演了，《杀手》里的表演绝对值得一个奖项提名。那种小人物的辛酸和坚持演得太到位了，笑着笑着就哭了。</div>
+                <div class="comment-meta">10 月 27 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">电</div>
+              <div class="comment-body">
+                <div class="comment-user">电影马拉松</div>
+                <div class="comment-text">按时间线把麻花电影刷了一遍，能明显看到从舞台剧改编到电影化制作的变化。《夏洛特烦恼》舞台感最重，《独行月球》已经完全是电影工业的产物了。</div>
+                <div class="comment-meta">10 月 25 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">短</div>
+              <div class="comment-body">
+                <div class="comment-user">短剧观察员</div>
+                <div class="comment-text">麻花的短剧比电影更敢玩题材，《江湖学院》把美食和武侠混搭，每集都有新花样。就是制作上确实粗糙一些，外景比较少。</div>
+                <div class="comment-meta">10 月 24 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">巡</div>
+              <div class="comment-body">
+                <div class="comment-user">巡演追光者</div>
+                <div class="comment-text">线下看过《乌龙山伯爵》现场版，观众互动和现挂是电影里看不到的体验。修复版能保留一些现场氛围，但肯定不如现场过瘾。</div>
+                <div class="comment-meta">10 月 22 日</div>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">半</div>
+              <div class="comment-body">
+                <div class="comment-user">半糖喜剧</div>
+                <div class="comment-text">整体而言麻花的喜剧质量比较稳定，但最近几部有点套路化了，希望能在题材上再大胆一些，不要总是小人物逆袭的故事。</div>
+                <div class="comment-meta">10 月 20 日</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. 相关资讯 -->
+        <section class="section" id="news">
+          <h2 class="section-title"><span class="bar"></span>相关资讯与动态</h2>
+          <p class="section-sub">麻花影视领域近期具体事件与内容更新</p>
+          <ul class="news-list">
+            <li>
+              <img src="https://picsum.photos/seed/mahua-news01/600/400" alt="乌龙山伯爵修复版上线资讯配图" width="600" height="400" loading="lazy">
+              <div class="news-body">
+                <div class="news-title">《乌龙山伯爵》高清修复版上线，新增幕后采访段落</div>
+                <div class="news-summary">修复版对 2013 年巡演录像进行了画面和声音修复，并加入主创回顾经典段落的采访内容，已在平台上线。</div>
+                <div class="news-date">2026-11-08</div>
+              </div>
+            </li>
+            <li>
+              <img src="https://picsum.photos/seed/mahua-news02/600/400" alt="江湖学院短剧更新资讯配图" width="600" height="400" loading="lazy">
+              <div class="news-body">
+                <div class="news-title">《江湖学院》第 8 集上线，美食破案单元受关注</div>
+                <div class="news-summary">本集以“厨神争霸赛”为主线，将现代火锅元素融入古代江湖场景，单集播放量创系列新高。</div>
+                <div class="news-date">2026-11-08</div>
+              </div>
+            </li>
+            <li>
+              <img src="https://picsum.photos/seed/mahua-news03/600/400" alt="夏洛特烦恼4K重映资讯配图" width="600" height="400" loading="lazy">
+              <div class="news-body">
+                <div class="news-title">《夏洛特烦恼》4K 重映开启，部分影院加映映后彩蛋</div>
+                <div class="news-summary">11 月限定重映覆盖主要城市院线，部分场次结束后播放主创录制的映后问答彩蛋，吸引老观众二刷。</div>
+                <div class="news-date">2026-11-06</div>
+              </div>
+            </li>
+            <li>
+              <img src="https://picsum.photos/seed/mahua-news04/600/400" alt="独行月球幕后纪录片上线资讯配图" width="600" height="400" loading="lazy">
+              <div class="news-body">
+                <div class="news-title">《独行月球》幕后纪录片上线，揭秘袋鼠刚子特效制作</div>
+                <div class="news-summary">纪录片聚焦“刚子”的动作捕捉和毛发渲染过程，展示特效团队如何让虚拟袋鼠与真人演员互动。</div>
+                <div class="news-date">2026-11-05</div>
+              </div>
+            </li>
+            <li>
+              <img src="https://picsum.photos/seed/mahua-news05/600/400" alt="超能一家人口碑讨论资讯配图" width="600" height="400" loading="lazy">
+              <div class="news-body">
+                <div class="news-title">《超能一家人》导演剪辑版上线，家庭戏份增加 15 分钟</div>
+                <div class="news-summary">平台独播的导演剪辑版补充了更多家庭成员之间的日常互动，试图平衡原版中特效场面与情感戏的比例。</div>
+                <div class="news-date">2026-11-03</div>
+              </div>
+            </li>
+            <li>
+              <img src="https://picsum.photos/seed/mahua-news06/600/400" alt="开心麻花巡演开票资讯配图" width="600" height="400" loading="lazy">
+              <div class="news-body">
+                <div class="news-title">开心麻花 2026 巡演杭州站开票，《乌龙山伯爵》早鸟 9 折</div>
+                <div class="news-summary">12 月杭州站巡演正式开票，早鸟购票享受 9 折优惠，同时开放部分后台探班名额抽选。</div>
+                <div class="news-date">2026-11-02</div>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 10. 相关推荐 -->
+        <section class="section" id="recommend">
+          <h2 class="section-title"><span class="bar"></span>延伸内容方向</h2>
+          <p class="section-sub">按题材、演员和创作形式拓展的观看方向</p>
+          <div class="tag-cloud">
+            <a href="/#featured">沈腾主演喜剧</a>
+            <a href="/#featured">马丽情感线作品</a>
+            <a href="/#featured">魏翔独角戏</a>
+            <a href="/#featured">舞台剧原版影像</a>
+            <a href="/#featured">科幻喜剧对比</a>
+            <a href="/#featured">开心麻花巡演纪录片</a>
+            <a href="/#featured">短剧单元剧</a>
+            <a href="/#featured">团综即兴挑战</a>
+          </div>
+        </section>
+
+        <!-- 11. 补充板块：热门榜单 + 时间线 -->
+        <section class="section" id="ranking">
+          <h2 class="section-title"><span class="bar"></span>麻花作品热度榜单</h2>
+          <p class="section-sub">根据近期播放与讨论热度排列（数据截至 2026-11-08）</p>
+          <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+            <div class="card" style="border-left: 4px solid var(--primary);">
+              <div class="card-body">
+                <h3 class="card-title" style="font-size:15px;">1. 夏洛特烦恼</h3>
+                <p class="card-desc">经典舞台剧改编，怀旧金曲与穿越梗经久不衰。</p>
+                <div class="card-meta"><span>热度指数 98.6</span></div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--accent);">
+              <div class="card-body">
+                <h3 class="card-title" style="font-size:15px;">2. 独行月球</h3>
+                <p class="card-desc">科幻喜剧代表作，袋鼠刚子持续圈粉。</p>
+                <div class="card-meta"><span>热度指数 89.7</span></div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 4px solid #f39c12;">
+              <div class="card-body">
+                <h3 class="card-title" style="font-size:15px;">3. 这个杀手不太冷静</h3>
+                <p class="card-desc">戏中戏结构获好评，魏翔表演出圈。</p>
+                <div class="card-meta"><span>热度指数 85.1</span></div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 4px solid #ddd;">
+              <div class="card-body">
+                <h3 class="card-title" style="font-size:15px;">4. 乌龙山伯爵（修复版）</h3>
+                <p class="card-desc">经典舞台剧影像新上线，老粉回归。</p>
+                <div class="card-meta"><span>热度指数 76.8</span></div>
+              </div>
+            </div>
+            <div class="card" style="border-left: 4px solid #ddd;">
+              <div class="card-body">
+                <h3 class="card-title" style="font-size:15px;">5. 江湖学院</h3>
+                <p class="card-desc">短剧更新中，美食武侠混搭题材吸睛。</p>
+                <div class="card-meta"><span>热度指数 72.5</span></div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="font-size:16px; margin:24px 0 12px; color:var(--primary);">近期条目时间线</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>11 月 8 日</h4>
+              <p>《江湖学院》第 8 集上线；《乌龙山伯爵》高清修复版全片上线</p>
+            </div>
+            <div class="timeline-item">
+              <h4>11 月 6 日</h4>
+              <p>《夏洛特烦恼》4K 重映开启；《独行月球》幕后纪录片上线</p>
+            </div>
+            <div class="timeline-item">
+              <h4>11 月 3 日</h4>
+              <p>《超能一家人》导演剪辑版上线，新增 15 分钟家庭片段</p>
+            </div>
+            <div class="timeline-item">
+              <h4>11 月 1 日</h4>
+              <p>《这个杀手不太冷静》弹幕解读版上线</p>
+            </div>
+            <div class="timeline-item">
+              <h4>10 月 30 日</h4>
+              <p>《西虹市首富》衍生互动短剧立项公布</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- 右辅助栏 -->
+      <aside class="sidebar-right" aria-label="辅助信息">
+        <div class="side-card">
+          <h3>🔥 热播榜单</h3>
+          <ul class="hot-list">
+            <li><span class="rank">1</span><a href="/#featured">夏洛特烦恼</a></li>
+            <li><span class="rank">2</span><a href="/#featured">独行月球</a></li>
+            <li><span class="rank">3</span><a href="/#featured">这个杀手不太冷静</a></li>
+            <li><span class="rank">4</span><a href="/#featured">乌龙山伯爵（修复版）</a></li>
+            <li><span class="rank">5</span><a href="/#featured">江湖学院</a></li>
+            <li><span class="rank">6</span><a href="/#featured">麻花特开心</a></li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>🕐 最新更新</h3>
+          <ul class="update-stream">
+            <li><span class="upd-name">《江湖学院》第 8 集</span><span class="upd-time">今天 10:00</span></li>
+            <li><span class="upd-name">《乌龙山伯爵》修复版</span><span class="upd-time">今天 09:30</span></li>
+            <li><span class="upd-name">《麻花特开心》第 12 期</span><span class="upd-time">昨天 21:10</span></li>
+            <li><span class="upd-name">《二维码杀手》1-6 集</span><span class="upd-time">昨天 18:00</span></li>
+            <li><span class="upd-name">《夏洛特烦恼》4K 重映</span><span class="upd-time">11 月 6 日</span></li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>📌 热门标签</h3>
+          <div class="tag-cloud" style="gap:6px;">
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">舞台剧改编</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">科幻喜剧</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">短剧</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">团综</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">沈腾</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">马丽</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">魏翔</a>
+            <a href="/#featured" style="font-size:12px; padding:3px 10px;">合家欢</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="f-logo">麻花影视</div>
+        <p>聚合开心麻花舞台剧改编电影、都市情景喜剧、爆笑短剧与巡演实录，提供片单、深度解析与观众口碑。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容分类</h4>
+        <ul>
+          <li><a href="/#featured">舞台剧改编电影</a></li>
+          <li><a href="/#featured">都市情景喜剧</a></li>
+          <li><a href="/#featured">爆笑网络短剧</a></li>
+          <li><a href="/#featured">科幻喜剧</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>快速入口</h4>
+        <ul>
+          <li><a href="/#latest">最新更新</a></li>
+          <li><a href="/#categories">分类浏览</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#ranking">热度榜单</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>互动</h4>
+        <ul>
+          <li><a href="/#comments">观众评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#recommend">延伸方向</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>部分内容为示例数据，仅用于展示页面结构。本站内容按主题领域整理，与任何官方机构无关。</p>
+      <p>© 2026 麻花影视 · 内容聚合示例页</p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // 搜索高亮与筛选
+      var searchInput = document.getElementById('searchInput');
+      var searchBtn = document.getElementById('searchBtn');
+      var mainContent = document.querySelector('.main-content');
+
+      function clearHighlights() {
+        var highlights = document.querySelectorAll('.search-highlight');
+        highlights.forEach(function(el) {
+          var parent = el.parentNode;
+          parent.replaceChild(document.createTextNode(el.textContent), el);
+          parent.normalize();
+        });
+      }
+
+      function highlightText(node, term) {
+        if (node.nodeType === 3) {
+          var text = node.nodeValue;
+          var lower = text.toLowerCase();
+          var idx = lower.indexOf(term.toLowerCase());
+          if (idx !== -1) {
+            var span = document.createElement('span');
+            span.className = 'search-highlight';
+            var before = text.slice(0, idx);
+            var match = text.slice(idx, idx + term.length);
+            var after = text.slice(idx + term.length);
+            var frag = document.createDocumentFragment();
+            if (before) frag.appendChild(document.createTextNode(before));
+            span.textContent = match;
+            frag.appendChild(span);
+            if (after) frag.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(frag, node);
+          }
+        } else if (node.nodeType === 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
+          Array.from(node.childNodes).forEach(function(child) {
+            highlightText(child, term);
+          });
+        }
+      }
+
+      function doSearch() {
+        var term = searchInput.value.trim();
+        clearHighlights();
+        var existingMsg = document.querySelector('.no-result-msg');
+        if (existingMsg) existingMsg.remove();
+
+        if (!term) return;
+
+        highlightText(mainContent, term);
+
+        var found = document.querySelectorAll('.search-highlight');
+        if (found.length === 0) {
+          var msg = document.createElement('div');
+          msg.className = 'no-result-msg';
+          msg.style.display = 'block';
+          msg.textContent = '未找到与“' + term + '”相关的内容，请尝试其他关键词。';
+          mainContent.prepend(msg);
+        }
+      }
+
+      searchBtn.addEventListener('click', doSearch);
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') doSearch();
+      });
+
+      // 导航高亮跟随滚动
+      var sections = document.querySelectorAll('.main-content [id]');
+      var navLinks = document.querySelectorAll('.main-nav a');
+      window.addEventListener('scroll', function() {
+        var scrollPos = window.scrollY + 200;
+        var currentId = '';
+        sections.forEach(function(sec) {
+          if (sec.offsetTop <= scrollPos) {
+            currentId = sec.id;
+          }
+        });
+        navLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '/#' + currentId) {
+            link.classList.add('active');
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
+
+</body>
+          </html>
